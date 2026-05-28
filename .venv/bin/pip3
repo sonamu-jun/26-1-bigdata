@@ -1,4 +1,4 @@
-#!/home/jspcv/bigdata/.venv/bin/python
+#!/home/jspcv/26-1-bigdata/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -1,4 +1,4 @@
-#!/home/jspcv/bigdata/.venv/bin/python
+#!/home/jspcv/26-1-bigdata/.venv/bin/python
 import sys
 from numpy.f2py.f2py2e import main
 if __name__ == '__main__':
