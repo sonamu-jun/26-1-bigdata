@@ -44,12 +44,6 @@ data_2d = centered_data @ principal_components
 explained_variance_ratio = eigenvalues / np.sum(eigenvalues)
 kept_variance = np.sum(explained_variance_ratio[:n_components])
 
-print("원본 데이터 모양:", data_3d.shape)
-print("PCA 후 데이터 모양:", data_2d.shape)
-print("각 주성분의 설명 분산 비율:", explained_variance_ratio)
-print(f"2차원으로 유지한 정보 비율: {kept_variance:.2%}")
-
-
 # 9. 원본 3D와 PCA 2D 시각화
 fig = plt.figure(figsize=(12, 5), constrained_layout=True)
 
@@ -70,6 +64,22 @@ ax_2d.set_title(f"PCA Result in 2D ({kept_variance:.1%} kept)")
 ax_2d.set_xlabel("Principal Component 1")
 ax_2d.set_ylabel("Principal Component 2")
 ax_2d.set_aspect("equal", adjustable="box")
+
+result_text = (
+    f"Original shape = {data_3d.shape}\n"
+    f"PCA shape = {data_2d.shape}\n"
+    f"PC1 variance = {explained_variance_ratio[0]:.2%}\n"
+    f"PC2 variance = {explained_variance_ratio[1]:.2%}\n"
+    f"Kept variance = {kept_variance:.2%}"
+)
+ax_2d.text(
+    0.04,
+    0.96,
+    result_text,
+    transform=ax_2d.transAxes,
+    va="top",
+    bbox={"boxstyle": "round", "facecolor": "white", "alpha": 0.9},
+)
 
 fig.colorbar(scatter, ax=[ax_3d, ax_2d], shrink=0.75, label="PC1 value")
 plt.show()
