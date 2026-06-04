@@ -43,6 +43,9 @@ def visualize_kmeans(
             features_scaled[:, 0],
             features_scaled[:, 1],
             c=cluster_label,
+            cmap="tab10",
+            vmin=0,
+            vmax=n_clusters - 1,
             s=15,
         )
         kmeans_ax.scatter(new_centers[:, 0], new_centers[:, 1],

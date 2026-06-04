@@ -236,6 +236,8 @@ visualization["visualize_dbscan"](
     features_scaled,
     step_history,
     EPS,
+    NOISE_LABEL,
+    UNASSIGNED_LABEL,
     ANIMATION_EVERY,
     PAUSE_SECONDS,
 )

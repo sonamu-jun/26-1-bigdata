@@ -2,10 +2,27 @@ from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
 
 
+def get_point_colors(cluster_label, noise_label, unassigned_label):
+    colors = []
+    cluster_colors = plt.get_cmap("tab10")
+
+    for label in cluster_label:
+        if label == unassigned_label:
+            colors.append("lightgray")
+        elif label == noise_label:
+            colors.append("black")
+        else:
+            colors.append(cluster_colors(int(label) % 10))
+
+    return colors
+
+
 def visualize_dbscan(
     features_scaled,
     step_history,
     eps,
+    noise_label,
+    unassigned_label,
     animation_every,
     pause_seconds,
 ):
@@ -21,13 +38,14 @@ def visualize_dbscan(
         ax.clear()
 
         cluster_label = step["cluster_label"]
+        point_colors = get_point_colors(cluster_label, noise_label, unassigned_label)
         current_index = step["current_index"]
         neighbor_indices = step["neighbor_indices"]
 
         ax.scatter(
             features_scaled[:, 0],
             features_scaled[:, 1],
-            c=cluster_label,
+            c=point_colors,
             s=15,
         )
 
